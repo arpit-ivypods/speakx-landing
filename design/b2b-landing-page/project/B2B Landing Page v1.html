@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Cohere — L&D operating system</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,wght@0,300;0,400;0,500;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  html, body { margin: 0; padding: 0; background: #d9d6cf; font-family: "Inter Tight", system-ui, sans-serif; }
+  *, *::before, *::after { box-sizing: border-box; }
+  button { font-family: inherit; }
+  a:hover { opacity: .7; }
+  /* hide scrollbar inside artboards while still allowing scroll */
+  .dc-artboard-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+  .dc-artboard-scroll::-webkit-scrollbar-thumb { background: rgba(0,0,0,.18); border-radius: 4px; }
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="directionA.jsx"></script>
+<script type="text/babel" src="directionB.jsx"></script>
+
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "aPalette": "cream",
+  "aType": "grotesque",
+  "aMode": "light",
+  "aHero": "default",
+  "bPalette": "iris",
+  "bType": "mono",
+  "bMode": "dark",
+  "bHero": "outcomes"
+}/*EDITMODE-END*/;
+
+function App() {
+  const [tw, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+  const aTweaks = { palette: tw.aPalette, typePair: tw.aType, mode: tw.aMode, heroCopy: tw.aHero };
+  const bTweaks = { palette: tw.bPalette, typePair: tw.bType, mode: tw.bMode, heroCopy: tw.bHero };
+
+  return (
+    <>
+      <DesignCanvas title="Cohere — 3D-forward L&D landing page" subtitle="Two distinct directions · click any artboard to focus">
+        <DCSection id="directions" title="Directions">
+          <DCArtboard id="A" label="A · Premium Editorial" width={1280} height={5400}>
+            <div data-screen-label="Direction A — Editorial" style={{ width: 1280, minHeight: 5400 }}>
+              <DirectionA tweaks={aTweaks} />
+            </div>
+          </DCArtboard>
+          <DCArtboard id="B" label="B · Techno-Futurist" width={1280} height={5400}>
+            <div data-screen-label="Direction B — Techno" style={{ width: 1280, minHeight: 5400 }}>
+              <DirectionB tweaks={bTweaks} />
+            </div>
+          </DCArtboard>
+        </DCSection>
+      </DesignCanvas>
+
+      <TweaksPanel title="Tweaks">
+        <TweakSection title="Direction A — Editorial">
+          <TweakSelect label="Palette" value={tw.aPalette} onChange={(v) => setTweak("aPalette", v)}
+            options={[{value:"cream",label:"Cream + Rust"},{value:"sage",label:"Sage + Forest"},{value:"ivory",label:"Ivory + Walnut"}]} />
+          <TweakSelect label="Type pairing" value={tw.aType} onChange={(v) => setTweak("aType", v)}
+            options={[{value:"editorial",label:"Editorial (Newsreader + Inter)"},{value:"grotesque",label:"All grotesque"},{value:"mono",label:"Mono display"}]} />
+          <TweakRadio label="Mode" value={tw.aMode} onChange={(v) => setTweak("aMode", v)}
+            options={[{value:"light",label:"Light"},{value:"dark",label:"Dark"}]} />
+          <TweakSelect label="Hero copy" value={tw.aHero} onChange={(v) => setTweak("aHero", v)}
+            options={[{value:"default",label:"Build the skills…"},{value:"outcomes",label:"From compliance to capability"},{value:"team",label:"OS for people development"}]} />
+        </TweakSection>
+        <TweakSection title="Direction B — Techno">
+          <TweakSelect label="Palette" value={tw.bPalette} onChange={(v) => setTweak("bPalette", v)}
+            options={[{value:"midnight",label:"Midnight + Mint"},{value:"noir",label:"Noir + Ember"},{value:"iris",label:"Iris + Lavender"}]} />
+          <TweakSelect label="Type pairing" value={tw.bType} onChange={(v) => setTweak("bType", v)}
+            options={[{value:"mono",label:"Mono-led"},{value:"grotesque",label:"All grotesque"},{value:"technical",label:"Space Grotesk"}]} />
+          <TweakRadio label="Mode" value={tw.bMode} onChange={(v) => setTweak("bMode", v)}
+            options={[{value:"dark",label:"Dark"},{value:"light",label:"Light"}]} />
+          <TweakSelect label="Hero copy" value={tw.bHero} onChange={(v) => setTweak("bHero", v)}
+            options={[{value:"default",label:"The operating layer…"},{value:"outcomes",label:"Measure what learning does"},{value:"team",label:"Infrastructure for people dev"}]} />
+        </TweakSection>
+      </TweaksPanel>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
