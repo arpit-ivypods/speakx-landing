@@ -465,12 +465,12 @@ function SkillCube({ P }) {
   const rx = -15 + m.y * 10;
 
   const faces = [
-    { label: "PATIENT COMMS", value: 82, c: P.accent },
+    { label: "PATIENT COMMS", value: 82, c: ACCENTS.mint },
     { label: "HANDOFF CLARITY", value: 78, c: P.accent },
-    { label: "PRONUNCIATION", value: 64, c: P.accent },
-    { label: "MEDICAL TERMS", value: 71, c: P.accent },
-    { label: "EMPATHY SCRIPTS", value: 56, c: P.accent },
-    { label: "EMERGENCY CALLS", value: 48, c: P.accent },
+    { label: "PRONUNCIATION", value: 64, c: ACCENTS.sky },
+    { label: "MEDICAL TERMS", value: 71, c: ACCENTS.pink },
+    { label: "EMPATHY SCRIPTS", value: 56, c: ACCENTS.amber },
+    { label: "EMERGENCY CALLS", value: 48, c: ACCENTS.coral },
   ];
 
   const size = 240;
@@ -896,14 +896,14 @@ export default function DirectionBFull({ tweaks }) {
         </Reveal>
         <div style={{ display: "grid", gridTemplateColumns: vw < 720 ? "1fr 1fr" : vw < 1024 ? "repeat(3, 1fr)" : "repeat(4, 1fr)", gap: 12 }}>
           {[
-            { code: "RN", t: "Nurses", d: "Handoffs, family conversations, vitals reporting", n: 840, c: P.accent },
+            { code: "RN", t: "Nurses", d: "Handoffs, family conversations, vitals reporting", n: 840, c: ACCENTS.mint },
             { code: "MD", t: "Doctors", d: "Patient rounds, diagnosis briefs, discharge talks", n: 320, c: P.accent },
-            { code: "FD", t: "Front Desk", d: "Admissions, queries, appointment scheduling", n: 180, c: P.accent },
-            { code: "ER", t: "Paramedics", d: "Emergency calls, triage briefs, ambulance comms", n: 96, c: P.accent },
-            { code: "LX", t: "Lab Techs", d: "Sample protocols, patient instructions, reports", n: 124, c: P.accent },
-            { code: "RX", t: "Pharmacists", d: "Prescription counselling, dosage clarifications", n: 84, c: P.accent },
-            { code: "PC", t: "Patient Care", d: "Coordination, family briefings, transfers", n: 142, c: P.accent },
-            { code: "BL", t: "Billing & Insurance", d: "Cashless flow, claim conversations, estimates", n: 78, c: P.accent },
+            { code: "FD", t: "Front Desk", d: "Admissions, queries, appointment scheduling", n: 180, c: ACCENTS.sky },
+            { code: "ER", t: "Paramedics", d: "Emergency calls, triage briefs, ambulance comms", n: 96, c: ACCENTS.coral },
+            { code: "LX", t: "Lab Techs", d: "Sample protocols, patient instructions, reports", n: 124, c: ACCENTS.gold },
+            { code: "RX", t: "Pharmacists", d: "Prescription counselling, dosage clarifications", n: 84, c: ACCENTS.lime },
+            { code: "PC", t: "Patient Care", d: "Coordination, family briefings, transfers", n: 142, c: ACCENTS.pink },
+            { code: "BL", t: "Billing & Insurance", d: "Cashless flow, claim conversations, estimates", n: 78, c: ACCENTS.amber },
           ].map((r, i) => (
             <Reveal key={r.code} delay={i * 40}>
               <div style={{
@@ -1254,10 +1254,10 @@ export default function DirectionBFull({ tweaks }) {
         <div style={{ marginBottom: 40 }}><Kicker P={P} type={type}>Telemetry</Kicker></div>
         <div style={{ display: "grid", gridTemplateColumns: vw < 900 ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: 0, borderTop: `1px solid ${P.line}`, borderBottom: `1px solid ${P.line}` }}>
           {[
-            { v: 91, suf: "%", l: "Drill completion across shifts", note: "[34% generic-LMS baseline]", c: P.accent },
+            { v: 91, suf: "%", l: "Drill completion across shifts", note: "[34% generic-LMS baseline]", c: ACCENTS.mint },
             { v: 42, suf: "%", l: "Avg fluency lift in 90 days", note: "[clinical English, all roles]", c: P.accent },
-            { v: 1420, suf: "", l: "Staff trained per hospital", note: "[median, year one]", c: P.accent },
-            { v: 28, suf: " pts", l: "Patient satisfaction lift", note: "[PSAT, rolling 90d]", c: P.accent },
+            { v: 1420, suf: "", l: "Staff trained per hospital", note: "[median, year one]", c: ACCENTS.amber },
+            { v: 28, suf: " pts", l: "Patient satisfaction lift", note: "[PSAT, rolling 90d]", c: ACCENTS.pink },
           ].map((s, i) => (
             <div key={s.l} style={{ padding: "40px 28px", position: "relative", borderRight: i < 3 && vw >= 900 ? `1px solid ${P.line}` : "none", borderBottom: vw < 900 && i < 2 ? `1px solid ${P.line}` : "none", overflow: "hidden" }}>
               <div aria-hidden style={{ position: "absolute", top: -60, left: -40, width: 220, height: 220, borderRadius: "50%", background: s.c, opacity: 0.10, filter: "blur(60px)" }} />
