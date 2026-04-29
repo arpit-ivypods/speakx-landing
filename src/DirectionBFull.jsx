@@ -5,13 +5,13 @@ import React from "react";
 const PB = {
   midnight: { bg: "#0A0B0D", bg2: "#111316", ink: "#E8ECEF", muted: "#6B7280", line: "rgba(232,236,239,0.10)", accent: "#6EFACC", surface: "#0F1114" },
   noir:     { bg: "#08080A", bg2: "#101012", ink: "#E8E6E2", muted: "#7A7770", line: "rgba(232,230,226,0.10)", accent: "#FF5C2B", surface: "#0E0E10" },
-  iris:     { bg: "#0A0B14", bg2: "#10121E", ink: "#E8E8F0", muted: "#7779A0", line: "rgba(232,232,240,0.10)", accent: "#A78BFA", surface: "#0F1020" },
+  iris:     { bg: "#000000", bg2: "#0A0B0F", ink: "#FFFFFF", muted: "#8A8E9A", line: "rgba(255,255,255,0.08)", accent: "#0062FF", surface: "#0E0F14" },
 };
 
 const TB = {
-  mono:      { display: '"Space Grotesk", sans-serif', body: '"Inter Tight", system-ui, sans-serif', mono: '"JetBrains Mono", ui-monospace, monospace', dw: 500 },
-  grotesque: { display: '"Inter Tight", system-ui, sans-serif', body: '"Inter Tight", system-ui, sans-serif', mono: '"JetBrains Mono", ui-monospace, monospace', dw: 600 },
-  technical: { display: '"Space Grotesk", sans-serif', body: '"Inter Tight", system-ui, sans-serif', mono: '"JetBrains Mono", ui-monospace, monospace', dw: 500 },
+  mono:      { display: '"Spline Sans", system-ui, sans-serif', body: '"Spline Sans", system-ui, sans-serif', mono: '"Spline Sans Mono", ui-monospace, monospace', dw: 500 },
+  grotesque: { display: '"Spline Sans", system-ui, sans-serif', body: '"Spline Sans", system-ui, sans-serif', mono: '"Spline Sans Mono", ui-monospace, monospace', dw: 500 },
+  technical: { display: '"Spline Sans", system-ui, sans-serif', body: '"Spline Sans", system-ui, sans-serif', mono: '"Spline Sans Mono", ui-monospace, monospace', dw: 500 },
 };
 
 const ACCENTS = {
@@ -92,21 +92,22 @@ function Magnetic({ children, primary, P, font, big }) {
       onMouseLeave={() => setT({ x: 0, y: 0 })}
       style={{
         transform: `translate(${t.x}px, ${t.y}px)`,
-        transition: "transform .25s cubic-bezier(.2,.8,.2,1), background .15s",
+        transition: "transform .25s cubic-bezier(.2,.8,.2,1), background .15s, box-shadow .15s",
         background: primary ? P.accent : "transparent",
-        color: primary ? "#08080A" : P.ink,
+        color: primary ? "#FFFFFF" : P.ink,
         border: `1px solid ${primary ? P.accent : P.line}`,
-        padding: big ? "16px 28px" : "13px 22px",
-        borderRadius: 4,
+        padding: big ? "14px 26px" : "11px 20px",
+        borderRadius: 999,
         fontFamily: font,
-        fontSize: big ? 14 : 13,
+        fontSize: big ? 15 : 14,
         fontWeight: 500,
-        letterSpacing: ".04em",
-        textTransform: "uppercase",
+        letterSpacing: ".01em",
+        textTransform: "none",
         cursor: "pointer",
         display: "inline-flex",
         alignItems: "center",
-        gap: 10,
+        gap: 8,
+        boxShadow: primary ? `0 8px 24px ${P.accent}33` : "none",
       }}
     >
       {children}
@@ -278,7 +279,7 @@ function ScrollHero({ P, type, copy }) {
             {copy.kicker}
           </div>
           <h1 style={{
-            fontFamily: '"Space Grotesk", sans-serif',
+            fontFamily: '"Spline Sans", sans-serif',
             fontWeight: type.dw,
             fontSize: "clamp(56px, 7vw, 112px)",
             lineHeight: 0.96,
@@ -319,7 +320,7 @@ function ScrollHero({ P, type, copy }) {
               border: `1px solid ${P.accent}`,
               boxShadow: `0 0 0 1px ${P.accent}33, 0 80px 140px rgba(0,0,0,.75)`,
               padding: 24,
-              fontFamily: '"JetBrains Mono", monospace',
+              fontFamily: '"Spline Sans Mono", monospace',
               color: P.ink,
               fontSize: 12,
             }}>
@@ -329,7 +330,7 @@ function ScrollHero({ P, type, copy }) {
             <div style={{
               position: "absolute", left: -240, top: 60, width: 260,
               background: P.surface, border: `1px solid ${P.line}`, padding: 18,
-              fontFamily: '"JetBrains Mono", monospace', fontSize: 11, color: P.ink,
+              fontFamily: '"Spline Sans Mono", monospace', fontSize: 11, color: P.ink,
               transform: `translateZ(180px) rotateY(10deg) translateX(${-cardLift}px)`,
               opacity: cardOpacity,
               transition: "opacity .2s",
@@ -349,21 +350,21 @@ function ScrollHero({ P, type, copy }) {
             <div style={{
               position: "absolute", right: -200, bottom: 20, width: 240,
               background: P.surface, border: `1px solid ${P.line}`, padding: 16,
-              fontFamily: '"JetBrains Mono", monospace', fontSize: 11, color: P.ink,
+              fontFamily: '"Spline Sans Mono", monospace', fontSize: 11, color: P.ink,
               transform: `translateZ(220px) rotateY(-12deg) translateX(${cardLift}px)`,
               opacity: cardOpacity,
               transition: "opacity .2s",
               boxShadow: "0 30px 60px rgba(0,0,0,.6)",
             }}>
               <div style={{ color: P.accent, fontSize: 10, marginBottom: 8, letterSpacing: ".15em" }}>● WARD_04 SYNCED</div>
-              <div style={{ fontSize: 12, marginBottom: 4, fontFamily: '"Space Grotesk", sans-serif' }}>28 staff rostered</div>
+              <div style={{ fontSize: 12, marginBottom: 4, fontFamily: '"Spline Sans", sans-serif' }}>28 staff rostered</div>
               <div style={{ color: P.muted, fontSize: 10 }}>auto-rostered · 2s ago</div>
             </div>
 
             <div style={{
               position: "absolute", right: -120, top: -50, width: 200,
               background: P.surface, border: `1px solid ${P.line}`, padding: 14,
-              fontFamily: '"JetBrains Mono", monospace', fontSize: 10, color: P.ink,
+              fontFamily: '"Spline Sans Mono", monospace', fontSize: 10, color: P.ink,
               transform: `translateZ(240px) rotateY(-6deg) translateY(${-cardLift}px)`,
               opacity: cardOpacity,
               transition: "opacity .2s",
@@ -397,7 +398,7 @@ function HeroCopy({ P, type, copy }) {
         {copy.kicker}
       </div>
       <h1 style={{
-        fontFamily: '"Space Grotesk", sans-serif',
+        fontFamily: '"Spline Sans", sans-serif',
         fontWeight: type.dw,
         fontSize: "clamp(48px, 7vw, 88px)",
         lineHeight: 0.97,
@@ -425,16 +426,16 @@ function DeviceFace({ P, progress = 1 }) {
   ];
   return (
     <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", color: P.muted, fontSize: 10, marginBottom: 16, letterSpacing: ".1em", fontFamily: '"JetBrains Mono", monospace' }}>
+      <div style={{ display: "flex", justifyContent: "space-between", color: P.muted, fontSize: 10, marginBottom: 16, letterSpacing: ".1em", fontFamily: '"Spline Sans Mono", monospace' }}>
         <span>speakx://fluency/q2-2026</span>
         <span style={{ color: P.accent }}>● LIVE</span>
       </div>
-      <div style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 26, marginBottom: 18, letterSpacing: "-.02em", color: P.ink }}>Fluency Lift · Q2 2026</div>
+      <div style={{ fontFamily: '"Spline Sans", sans-serif', fontSize: 26, marginBottom: 18, letterSpacing: "-.02em", color: P.ink }}>Fluency Lift · Q2 2026</div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10, marginBottom: 18 }}>
         {metrics.map(([k, v, hot]) => (
           <div key={k} style={{ border: `1px solid ${P.line}`, padding: "12px 14px" }}>
-            <div style={{ color: P.muted, fontSize: 9, letterSpacing: ".14em", fontFamily: '"JetBrains Mono", monospace' }}>{k}</div>
-            <div style={{ fontSize: 22, color: hot ? P.accent : P.ink, fontFamily: '"Space Grotesk", sans-serif', fontVariantNumeric: "tabular-nums" }}>{v}</div>
+            <div style={{ color: P.muted, fontSize: 9, letterSpacing: ".14em", fontFamily: '"Spline Sans Mono", monospace' }}>{k}</div>
+            <div style={{ fontSize: 22, color: hot ? P.accent : P.ink, fontFamily: '"Spline Sans", sans-serif', fontVariantNumeric: "tabular-nums" }}>{v}</div>
           </div>
         ))}
       </div>
@@ -464,12 +465,12 @@ function SkillCube({ P }) {
   const rx = -15 + m.y * 10;
 
   const faces = [
-    { label: "PATIENT COMMS", value: 82, c: ACCENTS.mint },
-    { label: "HANDOFF CLARITY", value: 78, c: ACCENTS.iris },
-    { label: "PRONUNCIATION", value: 64, c: ACCENTS.sky },
-    { label: "MEDICAL TERMS", value: 71, c: ACCENTS.pink },
-    { label: "EMPATHY SCRIPTS", value: 56, c: ACCENTS.amber },
-    { label: "EMERGENCY CALLS", value: 48, c: ACCENTS.coral },
+    { label: "PATIENT COMMS", value: 82, c: P.accent },
+    { label: "HANDOFF CLARITY", value: 78, c: P.accent },
+    { label: "PRONUNCIATION", value: 64, c: P.accent },
+    { label: "MEDICAL TERMS", value: 71, c: P.accent },
+    { label: "EMPATHY SCRIPTS", value: 56, c: P.accent },
+    { label: "EMERGENCY CALLS", value: 48, c: P.accent },
   ];
 
   const size = 240;
@@ -500,12 +501,12 @@ function SkillCube({ P }) {
             transform: transforms[i],
             display: "grid", placeItems: "center",
             padding: 20, color: P.ink,
-            fontFamily: '"JetBrains Mono", monospace',
+            fontFamily: '"Spline Sans Mono", monospace',
           }}>
             <div style={{ textAlign: "center" }}>
               <div style={{ fontSize: 10, color: f.c, letterSpacing: ".15em", marginBottom: 12, opacity: 0.85 }}>// SKILL</div>
-              <div style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 22, marginBottom: 16, letterSpacing: "-.01em" }}>{f.label}</div>
-              <div style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 56, color: f.c, lineHeight: 1, letterSpacing: "-.04em", textShadow: `0 0 30px ${f.c}66` }}>{f.value}</div>
+              <div style={{ fontFamily: '"Spline Sans", sans-serif', fontSize: 22, marginBottom: 16, letterSpacing: "-.01em" }}>{f.label}</div>
+              <div style={{ fontFamily: '"Spline Sans", sans-serif', fontSize: 56, color: f.c, lineHeight: 1, letterSpacing: "-.04em", textShadow: `0 0 30px ${f.c}66` }}>{f.value}</div>
               <div style={{ fontSize: 10, color: P.muted, marginTop: 8, letterSpacing: ".1em" }}>L{Math.round(f.value / 25) + 1} · TEAM AVG</div>
               <div style={{ height: 2, background: P.line, marginTop: 16 }}>
                 <div style={{ width: `${f.value}%`, height: "100%", background: f.c }}></div>
@@ -529,10 +530,10 @@ function CardStack({ P }) {
   const opacity = (i) => Math.max(0.4, 1 - i * 0.18 + prog * 0.4);
 
   const cards = [
-    { code: "RPRT", title: "CMO-grade dashboards", body: "Per-ward, per-role, per-shift. Patient feedback correlated with fluency lift. Export to your BI of choice.", c: ACCENTS.mint },
-    { code: "SYNC", title: "Live HMS + roster sync", body: "Pulls staff from your hospital management system. Auto-rosters drills around shift schedules.", c: ACCENTS.sky },
-    { code: "EVNT", title: "Roleplay + async drills", body: "Live simulation labs for handoffs and family conversations, plus 5-minute mobile drills between shifts.", c: ACCENTS.amber },
-    { code: "CALI", title: "Charge-nurse calibrations", body: "Quarterly fluency calibrations baked into the charge-nurse workflow. Quality docs, not spreadsheets.", c: ACCENTS.pink },
+    { code: "RPRT", title: "CMO-grade dashboards", body: "Per-ward, per-role, per-shift. Patient feedback correlated with fluency lift. Export to your BI of choice.", c: P.accent },
+    { code: "SYNC", title: "Live HMS + roster sync", body: "Pulls staff from your hospital management system. Auto-rosters drills around shift schedules.", c: P.accent },
+    { code: "EVNT", title: "Roleplay + async drills", body: "Live simulation labs for handoffs and family conversations, plus 5-minute mobile drills between shifts.", c: P.accent },
+    { code: "CALI", title: "Charge-nurse calibrations", body: "Quarterly fluency calibrations baked into the charge-nurse workflow. Quality docs, not spreadsheets.", c: P.accent },
   ];
 
   return (
@@ -554,7 +555,7 @@ function CardStack({ P }) {
             opacity: opacity(i),
             boxShadow: `0 30px 60px rgba(0,0,0,.4), 0 0 60px ${c.c}${i === 0 ? "33" : "11"}`,
             color: P.ink,
-            fontFamily: '"JetBrains Mono", monospace',
+            fontFamily: '"Spline Sans Mono", monospace',
             borderRadius: 14,
             overflow: "hidden",
           }}>
@@ -563,8 +564,8 @@ function CardStack({ P }) {
               <span style={{ color: c.c, padding: "4px 10px", borderRadius: 999, background: `${c.c}1A`, border: `1px solid ${c.c}33` }}>{c.code}</span>
               <span>0{i + 1} / 0{cards.length}</span>
             </div>
-            <div style={{ position: "relative", fontFamily: '"Space Grotesk", sans-serif', fontSize: 28, letterSpacing: "-.02em", marginBottom: 12 }}>{c.title}</div>
-            <div style={{ position: "relative", color: P.muted, fontSize: 13, lineHeight: 1.55, fontFamily: '"Inter Tight", sans-serif' }}>{c.body}</div>
+            <div style={{ position: "relative", fontFamily: '"Spline Sans", sans-serif', fontSize: 28, letterSpacing: "-.02em", marginBottom: 12 }}>{c.title}</div>
+            <div style={{ position: "relative", color: P.muted, fontSize: 13, lineHeight: 1.55, fontFamily: '"Spline Sans", sans-serif' }}>{c.body}</div>
           </div>
         ))}
       </div>
@@ -630,7 +631,7 @@ function TiltCard({ children, P, padding = 36, minHeight = 280, borderRight, bor
 
 function PanelB({ tab, P }) {
   if (tab === 0) return (
-    <div style={{ fontSize: 11, fontFamily: '"JetBrains Mono", monospace', color: P.ink }}>
+    <div style={{ fontSize: 11, fontFamily: '"Spline Sans Mono", monospace', color: P.ink }}>
       <div style={{ display: "flex", justifyContent: "space-between", color: P.muted, fontSize: 10, marginBottom: 12 }}>
         <span>$ curricula --status active</span><span>4 results</span>
       </div>
@@ -646,21 +647,21 @@ function PanelB({ tab, P }) {
   );
   if (tab === 1) return (
     <div style={{ fontSize: 12, color: P.ink }}>
-      <div style={{ fontFamily: '"JetBrains Mono", monospace', color: P.muted, fontSize: 10, marginBottom: 8 }}>// CLINICIAN: nurse_priya (ward_04)</div>
-      <div style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: 24, marginBottom: 18, letterSpacing: "-.02em" }}>Two drills before your shift.</div>
+      <div style={{ fontFamily: '"Spline Sans Mono", monospace', color: P.muted, fontSize: 10, marginBottom: 8 }}>// CLINICIAN: nurse_priya (ward_04)</div>
+      <div style={{ fontFamily: '"Spline Sans", sans-serif', fontSize: 24, marginBottom: 18, letterSpacing: "-.02em" }}>Two drills before your shift.</div>
       <div style={{ display: "grid", gap: 10 }}>
         {[["handoff-drill-03", "12 min", "7pm"], ["pronunciation/cardio-terms", "8 min", "EOS"]].map(([t, d, due]) => (
-          <div key={t} style={{ border: `1px solid ${P.line}`, padding: 14, display: "grid", gridTemplateColumns: "1fr auto", gap: 8, fontFamily: '"JetBrains Mono", monospace', fontSize: 11 }}>
+          <div key={t} style={{ border: `1px solid ${P.line}`, padding: 14, display: "grid", gridTemplateColumns: "1fr auto", gap: 8, fontFamily: '"Spline Sans Mono", monospace', fontSize: 11 }}>
             <div><div style={{ color: P.ink }}>▸ {t}</div><div style={{ color: P.muted, fontSize: 10, marginTop: 2 }}>{d}</div></div>
             <div style={{ color: P.accent, alignSelf: "center", fontSize: 10 }}>DUE {due}</div>
           </div>
         ))}
       </div>
-      <div style={{ marginTop: 16, fontFamily: '"JetBrains Mono", monospace', fontSize: 10, color: P.muted }}>● 14-shift streak — keep going</div>
+      <div style={{ marginTop: 16, fontFamily: '"Spline Sans Mono", monospace', fontSize: 10, color: P.muted }}>● 14-shift streak — keep going</div>
     </div>
   );
   if (tab === 2) return (
-    <div style={{ fontSize: 11, color: P.ink, fontFamily: '"JetBrains Mono", monospace' }}>
+    <div style={{ fontSize: 11, color: P.ink, fontFamily: '"Spline Sans Mono", monospace' }}>
       <div style={{ color: P.muted, fontSize: 10, marginBottom: 14 }}>// FLUENCY / nursing_staff</div>
       {[["patient_handoff", 82], ["medical_terms", 71], ["empathy_scripts", 56], ["family_comms", 64], ["pronunciation", 78], ["emergency_calls", 48]].map(([s, v]) => (
         <div key={s} style={{ display: "grid", gridTemplateColumns: "1fr 80px 30px", gap: 10, alignItems: "center", padding: "6px 0" }}>
@@ -672,7 +673,7 @@ function PanelB({ tab, P }) {
     </div>
   );
   return (
-    <div style={{ fontSize: 11, color: P.ink, height: "100%", display: "grid", gridTemplateRows: "auto 1fr", fontFamily: '"JetBrains Mono", monospace' }}>
+    <div style={{ fontSize: 11, color: P.ink, height: "100%", display: "grid", gridTemplateRows: "auto 1fr", fontFamily: '"Spline Sans Mono", monospace' }}>
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 14 }}>
         <span style={{ color: P.muted }}>// fluency_lift_30d</span>
         <span style={{ color: P.accent }}>+18.4% wow</span>
@@ -690,7 +691,7 @@ function PanelB({ tab, P }) {
 
 function Pricing({ P, type, vw, padX }) {
   const [annual, setAnnual] = React.useState(true);
-  const display = '"Space Grotesk", sans-serif';
+  const display = '"Spline Sans", sans-serif';
   const tiers = [
     { n: "WARD", p: annual ? 399 : 499, f: ["Up to 250 staff", "Role-based curricula", "Fluency reports", "SSO"], cta: "Start pilot" },
     { n: "HOSPITAL", p: annual ? 599 : 749, f: ["Fluency map", "Charge-nurse calibrations", "HMS + roster sync", "Custom roles"], cta: "Request access", featured: true },
@@ -700,8 +701,8 @@ function Pricing({ P, type, vw, padX }) {
     <section style={{ padding: `120px ${padX}px`, borderTop: `1px solid ${P.line}`, position: "relative", zIndex: 1 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "end", marginBottom: 56, flexWrap: "wrap", gap: 24 }}>
         <div>
-          <div style={{ fontFamily: type.mono, fontSize: 11, color: P.accent, letterSpacing: ".18em", textTransform: "uppercase", marginBottom: 16 }}>§07 / PRICING</div>
-          <h2 style={{ fontFamily: display, fontSize: 64, lineHeight: 0.98, letterSpacing: "-0.035em", margin: 0, fontWeight: type.dw }}>Per-learner. No surprises.</h2>
+          <div style={{ marginBottom: 16 }}><Kicker P={P} type={type}>Pricing</Kicker></div>
+          <h2 style={{ fontFamily: display, fontSize: "clamp(36px, 4.6vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.035em", margin: 0, fontWeight: 500 }}>Per staff. No surprises.</h2>
         </div>
         <div style={{ display: "inline-flex", border: `1px solid ${P.line}`, padding: 4 }}>
           {[["ANNUAL", true], ["MONTHLY", false]].map(([l, v]) => (
@@ -751,7 +752,7 @@ function Pricing({ P, type, vw, padX }) {
 
 function FAQ({ P, type, vw, padX }) {
   const [open, setOpen] = React.useState(0);
-  const display = '"Space Grotesk", sans-serif';
+  const display = '"Spline Sans", sans-serif';
   const items = [
     ["Which roles can you train?", "Nurses, doctors, paramedics, lab techs, pharmacists, front-desk and reception, billing and insurance staff, patient-care coordinators, ward attendants, ambulance crew, and international patient services — each with role-specific clinical English curricula."],
     ["How long until staff start improving?", "Measurable fluency lift in 21 days. Median time-to-launch is 11 working days for Ward and Hospital tiers. Multi-site Chain rollouts: 4–6 weeks including HMS reconciliation."],
@@ -764,8 +765,8 @@ function FAQ({ P, type, vw, padX }) {
     <section style={{ padding: `120px ${padX}px`, borderTop: `1px solid ${P.line}`, position: "relative", zIndex: 1, background: P.bg2 }}>
       <div style={{ display: "grid", gridTemplateColumns: vw < 900 ? "1fr" : "1fr 2fr", gap: vw < 900 ? 32 : 64 }}>
         <div>
-          <div style={{ fontFamily: type.mono, fontSize: 11, color: P.accent, letterSpacing: ".18em", textTransform: "uppercase", marginBottom: 16 }}>§08 / FAQ</div>
-          <h2 style={{ fontFamily: display, fontSize: 48, lineHeight: 0.98, letterSpacing: "-0.035em", margin: 0, fontWeight: type.dw }}>Common questions.</h2>
+          <div style={{ marginBottom: 16 }}><Kicker P={P} type={type}>FAQ</Kicker></div>
+          <h2 style={{ fontFamily: display, fontSize: "clamp(32px, 4vw, 48px)", lineHeight: 1.05, letterSpacing: "-0.035em", margin: 0, fontWeight: 500 }}>Common questions.</h2>
         </div>
         <div>
           {items.map(([q, a], i) => (
@@ -821,7 +822,7 @@ export default function DirectionBFull({ tweaks }) {
     return 1;
   })();
 
-  const display = '"Space Grotesk", sans-serif';
+  const display = '"Spline Sans", sans-serif';
   const [tab, setTab] = React.useState(0);
   const tabs = ["00 / Curricula", "01 / Clinician", "02 / Fluency", "03 / Quality"];
 
@@ -838,7 +839,7 @@ export default function DirectionBFull({ tweaks }) {
       <nav style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 8px 8px 22px", position: "fixed", top: 16, left: "50%", transform: "translateX(-50%)", zIndex: 50, background: "rgba(20,21,30,0.72)", backdropFilter: "blur(24px) saturate(160%)", WebkitBackdropFilter: "blur(24px) saturate(160%)", borderRadius: 56, border: `1px solid rgba(255,255,255,0.08)`, gap: 24, boxShadow: "0 10px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06)", opacity: navOpacity, pointerEvents: navOpacity < 0.4 ? "none" : "auto", transition: "opacity .25s ease", maxWidth: "calc(100vw - 24px)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: compactNav ? 18 : 32, minWidth: 0 }}>
           <div style={{ fontFamily: type.mono, fontSize: 13, letterSpacing: ".14em", display: "flex", alignItems: "center", gap: 10, flexShrink: 0, color: P.ink }}>
-            <span aria-hidden style={{ width: 18, height: 18, borderRadius: "50%", background: `radial-gradient(circle at 30% 30%, #C4B0FF, ${P.accent} 55%, #5E3AC8)`, boxShadow: `0 0 12px ${P.accent}55`, display: "inline-block" }}></span>
+            <span aria-hidden style={{ width: 18, height: 18, borderRadius: "50%", background: `radial-gradient(circle at 30% 30%, #6FA0FF, ${P.accent} 55%, #003FCC)`, boxShadow: `0 0 12px ${P.accent}66`, display: "inline-block" }}></span>
             SPEAKX
           </div>
           {!compactNav && (
@@ -851,7 +852,7 @@ export default function DirectionBFull({ tweaks }) {
         </div>
         <div style={{ display: "flex", gap: 8, alignItems: "center", flexShrink: 0 }}>
           {!compactNav && <a href="#" style={{ color: "rgba(232,232,240,0.85)", fontSize: 12, textDecoration: "none", fontFamily: type.mono, textTransform: "uppercase", letterSpacing: ".1em", padding: "8px 14px" }}>Sign in</a>}
-          <a href="#" style={{ display: "inline-flex", alignItems: "center", gap: 6, background: P.accent, color: "#08080A", padding: "10px 18px", borderRadius: 999, fontFamily: type.mono, fontSize: 12, fontWeight: 600, letterSpacing: ".06em", textTransform: "uppercase", textDecoration: "none", boxShadow: `0 0 0 1px ${P.accent}, 0 8px 24px ${P.accent}40` }}>{compactNav ? "Pilot" : "Book a pilot"} →</a>
+          <a href="#" style={{ display: "inline-flex", alignItems: "center", gap: 6, background: P.accent, color: "#FFFFFF", padding: "10px 18px", borderRadius: 999, fontFamily: type.mono, fontSize: 12, fontWeight: 600, letterSpacing: ".06em", textTransform: "uppercase", textDecoration: "none", boxShadow: `0 0 0 1px ${P.accent}, 0 8px 24px ${P.accent}40` }}>{compactNav ? "Pilot" : "Book a pilot"} →</a>
         </div>
       </nav>
 
@@ -860,9 +861,9 @@ export default function DirectionBFull({ tweaks }) {
       <section style={{ padding: `40px ${padX}px`, borderTop: `1px solid ${P.line}`, position: "relative", zIndex: 1, background: P.bg }}>
         <div style={{ display: "grid", gridTemplateColumns: vw < 720 ? "1fr 1fr" : "repeat(3, auto)", gap: 16, justifyContent: vw < 720 ? "stretch" : "center", fontFamily: type.mono }}>
           {[
-            { label: "HIPAA", sub: "aligned", c: ACCENTS.mint },
-            { label: "NABH", sub: "compatible", c: ACCENTS.sky },
-            { label: "ISO 27001", sub: "+ SOC 2", c: ACCENTS.amber },
+            { label: "HIPAA", sub: "aligned", c: P.accent },
+            { label: "NABH", sub: "compatible", c: P.accent },
+            { label: "ISO 27001", sub: "+ SOC 2", c: P.accent },
           ].map((b) => (
             <div key={b.label} style={{ display: "inline-flex", alignItems: "center", gap: 12, padding: "10px 18px", border: `1px solid ${b.c}33`, background: `${b.c}10`, borderRadius: 999 }}>
               <span style={{ width: 8, height: 8, borderRadius: "50%", background: b.c, boxShadow: `0 0 10px ${b.c}` }} />
@@ -895,14 +896,14 @@ export default function DirectionBFull({ tweaks }) {
         </Reveal>
         <div style={{ display: "grid", gridTemplateColumns: vw < 720 ? "1fr 1fr" : vw < 1024 ? "repeat(3, 1fr)" : "repeat(4, 1fr)", gap: 12 }}>
           {[
-            { code: "RN", t: "Nurses", d: "Handoffs, family conversations, vitals reporting", n: 840, c: ACCENTS.mint },
-            { code: "MD", t: "Doctors", d: "Patient rounds, diagnosis briefs, discharge talks", n: 320, c: ACCENTS.iris },
-            { code: "FD", t: "Front Desk", d: "Admissions, queries, appointment scheduling", n: 180, c: ACCENTS.sky },
-            { code: "ER", t: "Paramedics", d: "Emergency calls, triage briefs, ambulance comms", n: 96, c: ACCENTS.coral },
-            { code: "LX", t: "Lab Techs", d: "Sample protocols, patient instructions, reports", n: 124, c: ACCENTS.gold },
-            { code: "RX", t: "Pharmacists", d: "Prescription counselling, dosage clarifications", n: 84, c: ACCENTS.lime },
-            { code: "PC", t: "Patient Care", d: "Coordination, family briefings, transfers", n: 142, c: ACCENTS.pink },
-            { code: "BL", t: "Billing & Insurance", d: "Cashless flow, claim conversations, estimates", n: 78, c: ACCENTS.amber },
+            { code: "RN", t: "Nurses", d: "Handoffs, family conversations, vitals reporting", n: 840, c: P.accent },
+            { code: "MD", t: "Doctors", d: "Patient rounds, diagnosis briefs, discharge talks", n: 320, c: P.accent },
+            { code: "FD", t: "Front Desk", d: "Admissions, queries, appointment scheduling", n: 180, c: P.accent },
+            { code: "ER", t: "Paramedics", d: "Emergency calls, triage briefs, ambulance comms", n: 96, c: P.accent },
+            { code: "LX", t: "Lab Techs", d: "Sample protocols, patient instructions, reports", n: 124, c: P.accent },
+            { code: "RX", t: "Pharmacists", d: "Prescription counselling, dosage clarifications", n: 84, c: P.accent },
+            { code: "PC", t: "Patient Care", d: "Coordination, family briefings, transfers", n: 142, c: P.accent },
+            { code: "BL", t: "Billing & Insurance", d: "Cashless flow, claim conversations, estimates", n: 78, c: P.accent },
           ].map((r, i) => (
             <Reveal key={r.code} delay={i * 40}>
               <div style={{
@@ -923,7 +924,7 @@ export default function DirectionBFull({ tweaks }) {
                     width: 36, height: 36, borderRadius: 10,
                     background: `linear-gradient(135deg, ${r.c}, ${r.c}88)`,
                     display: "grid", placeItems: "center",
-                    fontFamily: type.mono, fontSize: 11, fontWeight: 700, color: "#08080A",
+                    fontFamily: type.mono, fontSize: 11, fontWeight: 700, color: "#FFFFFF",
                     letterSpacing: ".04em",
                     boxShadow: `0 6px 20px ${r.c}55, inset 0 1px 0 rgba(255,255,255,0.4)`,
                   }}>{r.code}</div>
@@ -946,13 +947,13 @@ export default function DirectionBFull({ tweaks }) {
         padding: `120px ${padX}px`,
         position: "relative",
         zIndex: 1,
-        background: "linear-gradient(135deg, #FFB37C 0%, #FF8FB1 50%, #A78BFA 100%)",
+        background: "linear-gradient(140deg, #FFD485 0%, #FFB266 60%, #FF9252 100%)",
         overflow: "hidden",
         borderTop: `1px solid ${P.line}`,
       }}>
         <div aria-hidden style={{
           position: "absolute", inset: 0,
-          background: "radial-gradient(800px circle at 80% 15%, rgba(255,255,255,0.22), transparent 50%), radial-gradient(700px circle at 18% 85%, rgba(10,11,20,0.18), transparent 60%)",
+          background: "radial-gradient(900px circle at 78% 18%, rgba(255,255,255,0.30), transparent 55%), radial-gradient(700px circle at 18% 90%, rgba(20,12,0,0.18), transparent 60%)",
         }} />
         <div style={{ position: "relative", zIndex: 1, display: "grid", gridTemplateColumns: vw < 1024 ? "1fr" : "1.1fr 1fr", gap: vw < 1024 ? 56 : 64, alignItems: "center", maxWidth: 1280, margin: "0 auto" }}>
           <Reveal>
@@ -1039,8 +1040,8 @@ export default function DirectionBFull({ tweaks }) {
         <Reveal>
           <div style={{ display: "grid", gridTemplateColumns: vw < 900 ? "1fr" : "1fr 1fr", gap: 48, marginBottom: 72, alignItems: "end" }}>
             <div>
-              <div style={{ fontFamily: type.mono, fontSize: 11, color: P.muted, letterSpacing: ".2em", textTransform: "uppercase", marginBottom: 24 }}>§02 / MODULES</div>
-              <h2 style={{ fontFamily: display, fontSize: 72, lineHeight: 0.98, letterSpacing: "-0.04em", margin: 0, fontWeight: type.dw }}>
+              <div style={{ marginBottom: 20 }}><Kicker P={P} type={type}>Modules</Kicker></div>
+              <h2 style={{ fontFamily: display, fontSize: "clamp(40px, 5.5vw, 64px)", lineHeight: 1.04, letterSpacing: "-0.035em", margin: 0, fontWeight: 500 }}>
                 Six modules.<br />Every role covered.
               </h2>
             </div>
@@ -1087,8 +1088,8 @@ export default function DirectionBFull({ tweaks }) {
       <section style={{ padding: `60px ${padX}px 140px`, position: "relative", zIndex: 1, borderTop: `1px solid ${P.line}` }}>
         <div style={{ display: "grid", gridTemplateColumns: vw < 1024 ? "1fr" : "1fr 1fr", gap: vw < 1024 ? 48 : 64, alignItems: "center" }}>
           <div>
-            <div style={{ fontFamily: type.mono, fontSize: 11, color: P.accent, letterSpacing: ".2em", textTransform: "uppercase", marginBottom: 24 }}>§03 / FLUENCY MAP</div>
-            <h2 style={{ fontFamily: display, fontSize: 64, lineHeight: 0.98, letterSpacing: "-0.04em", margin: 0, fontWeight: type.dw, marginBottom: 24 }}>
+            <div style={{ marginBottom: 20 }}><Kicker P={P} type={type}>Fluency map</Kicker></div>
+            <h2 style={{ fontFamily: display, fontSize: "clamp(36px, 5vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.035em", margin: 0, fontWeight: 500, marginBottom: 24 }}>
               Every skill,<br />every role, every ward.
             </h2>
             <p style={{ color: P.muted, fontSize: 17, lineHeight: 1.55, maxWidth: 460, marginBottom: 32 }}>
@@ -1189,7 +1190,7 @@ export default function DirectionBFull({ tweaks }) {
                   { i: "MR", c: "#FFB37C" },
                   { i: "NV", c: "#6EFACC" },
                 ].map((u, i) => (
-                  <div key={u.i} style={{ width: 26, height: 26, borderRadius: "50%", background: `linear-gradient(135deg, ${u.c}, ${u.c}AA)`, color: "#08080A", display: "grid", placeItems: "center", fontSize: 9, fontWeight: 700, fontFamily: type.mono, marginLeft: i === 0 ? 0 : -8, border: `2px solid ${P.surface}`, boxShadow: `0 4px 12px ${u.c}55` }}>{u.i}</div>
+                  <div key={u.i} style={{ width: 26, height: 26, borderRadius: "50%", background: `linear-gradient(135deg, ${u.c}, ${u.c}AA)`, color: "#FFFFFF", display: "grid", placeItems: "center", fontSize: 9, fontWeight: 700, fontFamily: type.mono, marginLeft: i === 0 ? 0 : -8, border: `2px solid ${P.surface}`, boxShadow: `0 4px 12px ${u.c}55` }}>{u.i}</div>
                 ))}
               </div>
               <div style={{ fontFamily: type.mono, fontSize: 11, color: P.muted, marginLeft: 4 }}>3 calibrating</div>
@@ -1200,7 +1201,7 @@ export default function DirectionBFull({ tweaks }) {
               <svg width="20" height="20" viewBox="0 0 20 20" style={{ filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.5))" }}>
                 <path d="M2 2 L2 14 L6 11 L9 17 L11 16 L8 10 L14 10 Z" fill={P.accent} />
               </svg>
-              <div style={{ display: "inline-block", marginTop: 2, padding: "4px 10px", background: P.accent, color: "#08080A", borderRadius: 6, fontFamily: type.mono, fontSize: 10, fontWeight: 600 }}>Dr. Anjali</div>
+              <div style={{ display: "inline-block", marginTop: 2, padding: "4px 10px", background: P.accent, color: "#FFFFFF", borderRadius: 6, fontFamily: type.mono, fontSize: 10, fontWeight: 600 }}>Dr. Anjali</div>
             </div>
 
             {/* Bottom-left tip pill */}
@@ -1235,8 +1236,8 @@ export default function DirectionBFull({ tweaks }) {
         <div style={{ display: "grid", gridTemplateColumns: vw < 1024 ? "1fr" : "1fr 1fr", gap: vw < 1024 ? 48 : 64, alignItems: "center" }}>
           <CardStack P={P} />
           <div>
-            <div style={{ fontFamily: type.mono, fontSize: 11, color: P.accent, letterSpacing: ".2em", textTransform: "uppercase", marginBottom: 24 }}>§05 / COMPOSITION</div>
-            <h2 style={{ fontFamily: display, fontSize: 64, lineHeight: 0.98, letterSpacing: "-0.04em", margin: 0, fontWeight: type.dw, marginBottom: 24 }}>
+            <div style={{ marginBottom: 20 }}><Kicker P={P} type={type}>Composition</Kicker></div>
+            <h2 style={{ fontFamily: display, fontSize: "clamp(36px, 5vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.035em", margin: 0, fontWeight: 500, marginBottom: 24 }}>
               Layered, not bundled.
             </h2>
             <p style={{ color: P.muted, fontSize: 17, lineHeight: 1.55, maxWidth: 460 }}>
@@ -1250,13 +1251,13 @@ export default function DirectionBFull({ tweaks }) {
       </section>
 
       <section style={{ padding: `120px ${padX}px`, borderTop: `1px solid ${P.line}`, position: "relative", zIndex: 1 }}>
-        <div style={{ fontFamily: type.mono, fontSize: 11, color: P.accent, letterSpacing: ".2em", textTransform: "uppercase", marginBottom: 56 }}>§06 / TELEMETRY</div>
+        <div style={{ marginBottom: 40 }}><Kicker P={P} type={type}>Telemetry</Kicker></div>
         <div style={{ display: "grid", gridTemplateColumns: vw < 900 ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: 0, borderTop: `1px solid ${P.line}`, borderBottom: `1px solid ${P.line}` }}>
           {[
-            { v: 91, suf: "%", l: "Drill completion across shifts", note: "[34% generic-LMS baseline]", c: ACCENTS.mint },
-            { v: 42, suf: "%", l: "Avg fluency lift in 90 days", note: "[clinical English, all roles]", c: ACCENTS.iris },
-            { v: 1420, suf: "", l: "Staff trained per hospital", note: "[median, year one]", c: ACCENTS.sky },
-            { v: 28, suf: " pts", l: "Patient satisfaction lift", note: "[PSAT, rolling 90d]", c: ACCENTS.pink },
+            { v: 91, suf: "%", l: "Drill completion across shifts", note: "[34% generic-LMS baseline]", c: P.accent },
+            { v: 42, suf: "%", l: "Avg fluency lift in 90 days", note: "[clinical English, all roles]", c: P.accent },
+            { v: 1420, suf: "", l: "Staff trained per hospital", note: "[median, year one]", c: P.accent },
+            { v: 28, suf: " pts", l: "Patient satisfaction lift", note: "[PSAT, rolling 90d]", c: P.accent },
           ].map((s, i) => (
             <div key={s.l} style={{ padding: "40px 28px", position: "relative", borderRight: i < 3 && vw >= 900 ? `1px solid ${P.line}` : "none", borderBottom: vw < 900 && i < 2 ? `1px solid ${P.line}` : "none", overflow: "hidden" }}>
               <div aria-hidden style={{ position: "absolute", top: -60, left: -40, width: 220, height: 220, borderRadius: "50%", background: s.c, opacity: 0.10, filter: "blur(60px)" }} />
@@ -1273,16 +1274,16 @@ export default function DirectionBFull({ tweaks }) {
       <section style={{ padding: `120px ${padX}px`, position: "relative", zIndex: 1 }}>
         <div style={{ display: "grid", gridTemplateColumns: vw < 900 ? "1fr" : "repeat(2, 1fr)", gap: 28 }}>
           {[
-            { q: "We replaced three vendors with Speakx. Our nurses run 5-minute drills between rounds, and patient feedback on communication clarity jumped 28 points in a quarter.", a: "Dr. Priya Sharma", r: "CHRO · Sterling Hospitals", c: ACCENTS.mint, ini: "PS" },
-            { q: "The fluency map finally gave us a shared language with the medical board. Communication lift, not just training hours logged.", a: "Anita Menon", r: "CNO · Meridian Healthcare", c: ACCENTS.pink, ini: "AM" },
+            { q: "We replaced three vendors with Speakx. Our nurses run 5-minute drills between rounds, and patient feedback on communication clarity jumped 28 points in a quarter.", a: "Dr. Priya Sharma", r: "CHRO · Sterling Hospitals", c: P.accent, ini: "PS" },
+            { q: "The fluency map finally gave us a shared language with the medical board. Communication lift, not just training hours logged.", a: "Anita Menon", r: "CNO · Meridian Healthcare", c: P.accent, ini: "AM" },
           ].map((t) => (
             <Reveal key={t.a}>
               <div style={{ padding: 40, border: `1px solid ${t.c}33`, background: `linear-gradient(160deg, ${P.surface}, ${t.c}08)`, position: "relative", borderRadius: 16, overflow: "hidden" }}>
                 <div aria-hidden style={{ position: "absolute", top: -80, right: -80, width: 240, height: 240, borderRadius: "50%", background: t.c, opacity: 0.08, filter: "blur(60px)" }} />
-                <div style={{ position: "absolute", top: -10, left: 28, padding: "4px 12px", borderRadius: 999, background: t.c, color: "#08080A", fontFamily: type.mono, fontSize: 10, fontWeight: 700, letterSpacing: ".12em" }}>CASE STUDY</div>
+                <div style={{ position: "absolute", top: -10, left: 28, padding: "4px 12px", borderRadius: 999, background: t.c, color: "#FFFFFF", fontFamily: type.mono, fontSize: 10, fontWeight: 700, letterSpacing: ".12em" }}>CASE STUDY</div>
                 <div style={{ position: "relative", fontFamily: display, fontSize: 24, lineHeight: 1.35, letterSpacing: "-0.015em", marginBottom: 32, fontWeight: type.dw }}>&ldquo;{t.q}&rdquo;</div>
                 <div style={{ position: "relative", display: "flex", alignItems: "center", gap: 14, paddingTop: 20, borderTop: `1px solid ${P.line}` }}>
-                  <div style={{ width: 44, height: 44, borderRadius: "50%", background: `linear-gradient(135deg, ${t.c}, ${t.c}99)`, display: "grid", placeItems: "center", color: "#08080A", fontFamily: type.mono, fontSize: 12, fontWeight: 700, boxShadow: `0 6px 18px ${t.c}55, inset 0 1px 0 rgba(255,255,255,0.4)` }}>{t.ini}</div>
+                  <div style={{ width: 44, height: 44, borderRadius: "50%", background: `linear-gradient(135deg, ${t.c}, ${t.c}99)`, display: "grid", placeItems: "center", color: "#FFFFFF", fontFamily: type.mono, fontSize: 12, fontWeight: 700, boxShadow: `0 6px 18px ${t.c}55, inset 0 1px 0 rgba(255,255,255,0.4)` }}>{t.ini}</div>
                   <div>
                     <div style={{ fontSize: 14, fontWeight: 500 }}>{t.a}</div>
                     <div style={{ fontSize: 11, color: P.muted, fontFamily: type.mono, letterSpacing: ".06em" }}>{t.r}</div>
@@ -1298,9 +1299,9 @@ export default function DirectionBFull({ tweaks }) {
       <FAQ P={P} type={type} vw={vw} padX={padX} />
 
       <section style={{ padding: `160px ${padX}px 100px`, borderTop: `1px solid ${P.line}`, position: "relative", zIndex: 1, overflow: "hidden" }}>
-        <div style={{ position: "absolute", inset: 0, background: `radial-gradient(800px circle at 80% 30%, ${P.accent}28, transparent 55%), radial-gradient(700px circle at 15% 80%, ${ACCENTS.pink}22, transparent 50%), radial-gradient(600px circle at 60% 90%, ${ACCENTS.mint}1A, transparent 50%)` }}></div>
+        <div style={{ position: "absolute", inset: 0, background: `radial-gradient(900px circle at 80% 30%, ${P.accent}30, transparent 55%), radial-gradient(700px circle at 15% 80%, ${P.accent}20, transparent 50%)` }}></div>
         <div style={{ maxWidth: 1000, position: "relative" }}>
-          <div style={{ fontFamily: type.mono, fontSize: 11, color: P.accent, letterSpacing: ".2em", textTransform: "uppercase", marginBottom: 28 }}>§09 / DEPLOY</div>
+          <div style={{ marginBottom: 28 }}><Kicker P={P} type={type}>Deploy</Kicker></div>
           <h2 style={{ fontFamily: display, fontSize: "clamp(64px, 8vw, 128px)", lineHeight: 0.95, letterSpacing: "-0.045em", margin: 0, fontWeight: type.dw }}>
             Train every voice in your hospital.
           </h2>
